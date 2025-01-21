@@ -1,0 +1,4 @@
+# add more dirs to $PATH
+pathadd() {
+  [ -d "$1" ] && [[ ":$PATH:" != *":$1:"* ]] && PATH="$1${PATH:+":$PATH"}"
+}

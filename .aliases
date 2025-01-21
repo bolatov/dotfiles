@@ -1,0 +1,8 @@
+# shortcuts
+alias g="git"
+alias sc="source ~/.zshrc"
+alias zvim="vim ~/.zshrc"
+
+# dev aliases
+alias tf='terraform'
+

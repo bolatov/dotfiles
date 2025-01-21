@@ -1,0 +1,14 @@
+#!/usr/bin/env zsh
+
+DIR=$(pwd)
+
+ignored_file() {
+  for f in "^\.$" "^\.\.$" "^\.git(modules)?$" "\.swp$"; do
+    [[ "$1" =~ $f ]] && return 0
+  done
+  return 1
+}
+
+for i in .*; do
+    ignored_file "$i" || (([ ! -e "${HOME}/$i" ] || (printf "\r%-$(expr $(tput cols) - 1)s" "Overwrite ${HOME}/$i? Y/N" && ([[ "$*" = *"-yes"* ]] || [ "$(read -eq)" = "y" ]) && rm -r "${HOME}/$i")) && ln -s "${DIR}/$i" "${HOME}/$i" && echo "\r${DIR}/$i -> ${HOME}/$i")
+done

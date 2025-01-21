@@ -1,0 +1,13 @@
+# vim
+.vim/swap
+.vim/undodir
+
+# osx
+.DS_Store
+
+# backups
+*~
+
+# python
+*.pyc
+__pycache__
