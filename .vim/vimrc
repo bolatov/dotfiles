@@ -106,3 +106,17 @@ autocmd FileType cpp setlocal shiftwidth=4 tabstop=4 expandtab
 " don't use a background color when highlighting matching parantheses, since
 " otherwise it's hard to see where the cursor is
 hi MatchParen cterm=none ctermbg=none ctermfg=green
+
+
+" NERDTree
+map <C-t> :NERDTreeToggle<CR>
+let NERDTreeShowHidden=1
+let NERDTreeMinimalUI=1
+let NERDTreeWinSize=30
+let NERDTreeHijackNetrw=0
+" autocmd vimenter * if !argc() | NERDTree | endif
+autocmd vimenter * NERDTree
+autocmd vimenter * wincmd p " select previous window after spawning nerdtree
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif " quit if only nerdtree is only win
+
+let NERDTreeIgnore=['\~$', '\.swp$', '\.pyc$', '^__pycache__$']

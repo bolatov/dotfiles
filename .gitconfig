@@ -34,3 +34,6 @@
     added = green
     changed = yellow
     untracked = red
+[user]
+	name = Almer Bolatov
+	email = almer.bolatov@deliveryhero.com
