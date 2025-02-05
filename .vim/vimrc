@@ -112,7 +112,7 @@ hi MatchParen cterm=none ctermbg=none ctermfg=green
 map <C-t> :NERDTreeToggle<CR>
 let NERDTreeShowHidden=1
 let NERDTreeMinimalUI=1
-let NERDTreeWinSize=30
+let NERDTreeWinSize=50
 let NERDTreeHijackNetrw=0
 " autocmd vimenter * if !argc() | NERDTree | endif
 autocmd vimenter * NERDTree

@@ -1,3 +1,10 @@
+# .vim
+
+## Tips and Tricks
+
+- Format JSON by `%!jq`
+- Refresh NerdTree view by `R`
+
 ## References
 - [Vim Packages][1]
 
