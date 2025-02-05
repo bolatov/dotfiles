@@ -50,8 +50,8 @@ imap jk <Esc>
 map <space> :
 
 " delete does not copy
-nnoremap d "_d
-vnoremap d "_d
+" nnoremap d "_d
+" vnoremap d "_d
 
 " split navigations: e.g. Ctrl-J to move to the split below
 nnoremap <C-J> <C-W><C-J>

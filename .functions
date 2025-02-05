@@ -2,3 +2,12 @@
 pathadd() {
   [ -d "$1" ] && [[ ":$PATH:" != *":$1:"* ]] && PATH="$1${PATH:+":$PATH"}"
 }
+
+# connect to drone-db
+function drone-db() {
+  kubectl run postgresql-test --rm --tty -i --restart=Never --namespace drone-system --image bitnami/postgresql --env="PGPASSWORD=${DRONE_POSTGRES_PASSWORD}" --command -- psql --host dp-dev-infra-production-drone.cluster-ro-crq6468ieyho.eu-west-1.rds.amazonaws.com -U drone | tee /tmp/drone-db.sql
+}
+
+function gdp-access() {
+  eval "$(dp-devinfra destinations access --export-env-vars "$1" "$2" "$3")"
+}

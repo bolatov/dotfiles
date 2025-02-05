@@ -6,3 +6,5 @@ alias zvim="vim ~/.zshrc"
 # dev aliases
 alias tf='terraform'
 
+# find
+alias grepfind='grep --color=auto --with-filename --line-number -ri'
