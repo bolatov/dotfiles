@@ -2,6 +2,7 @@
 alias g="git"
 alias sc="source ~/.zshrc"
 alias zvim="vim ~/.zshrc"
+alias cls='printf "\033c"' # clear current terminal
 
 # dev aliases
 alias tf='terraform'
