@@ -6,6 +6,7 @@ alias cls='printf "\033c"' # clear current terminal
 
 # dev aliases
 alias tf='terraform'
+alias tg='terragrunt'
 
 # find
 alias grepfind='grep --color=auto --with-filename --line-number -ri'

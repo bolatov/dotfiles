@@ -9,7 +9,7 @@
 set encoding=utf-8
 
 " defaults
-" set number
+set number
 set modelines=0
 set nocompatible
 
@@ -40,9 +40,9 @@ autocmd FileType go setlocal shiftwidth=4 tabstop=4
 " highlight the current line and column
 " turn off cursorline for text and markdown, as it impedes reading!
 set cursorline
-autocmd BufRead,BufNewFile *.md setlocal nocursorline
-autocmd BufRead,BufNewFile *.txt setlocal nocursorline
-autocmd BufRead,BufNewFile *.tex setlocal nocursorline
+" autocmd BufRead,BufNewFile *.md setlocal nocursorline
+" autocmd BufRead,BufNewFile *.txt setlocal nocursorline
+" autocmd BufRead,BufNewFile *.tex setlocal nocursorline
 
 " can exit insert mode without leaving the 'home row' of the keyboard
 imap jk <Esc>
@@ -84,8 +84,8 @@ endfunction
 " make it apparent which of several splits is the active one
 augroup BgHighlight
     autocmd!
-    autocmd WinEnter * set cursorline
-    autocmd WinLeave * set nocursorline
+    autocmd WinEnter,BufEnter * setlocal cursorline
+    autocmd WinLeave * setlocal nocursorline
 augroup END
 
 " mapping to run flake8 against current buffer
