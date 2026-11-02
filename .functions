@@ -11,3 +11,80 @@ function drone-db() {
 function gdp-access() {
   eval "$(dp-devinfra destinations access --export-env-vars "$1" "$2" "$3")"
 }
+
+function dh-repo() {
+  # Change directory to the specific Delivery Hero repo
+  cd "$HOME/Code/github.com/deliveryhero/$1"
+}
+
+function com-schedule() {
+  # Set the default ID
+  local default_id="aws:051826700366:eu-west-1:polite-sailfish"
+  
+  # Use the first argument ($1) if provided, otherwise use the default
+  local cluster_id="${1:-$default_id}"
+
+  dp-devinfra cluster-fleet list-patches -o json | \
+    jq --arg cid "$cluster_id" '.[] | select(.clusterId == $cid) | .scheduledAt |= todate'
+}
+
+# Store a secret
+# -U update
+# example: add-password github_token my_github_token_here
+function add-password() {
+  security add-generic-password -a "$USER" -s "$1" -w "$2" -U
+}
+
+# Fetch a secret
+# example find-password github_token
+function find-password() {
+  security find-generic-password -a "$USER" -s "$1" -w 2>/dev/null
+}
+
+#
+# GitHub CLI token automation
+#
+if [ -t 1 ] && command -v gh &>/dev/null; then
+  if ! gh auth status &>/dev/null; then
+    gh auth login
+  fi
+  export GH_TOKEN="$(gh auth token)"
+  export GITHUB_TOKEN="$GH_TOKEN"
+fi
+
+ghrefresh() {
+  export GH_TOKEN="$(gh auth token)"
+  export GITHUB_TOKEN="$GH_TOKEN"
+}
+
+ghswitch() {
+  gh auth logout
+  gh auth login
+  ghrefresh
+}
+#
+# End GitHub CLI token automation
+#
+
+function start-dh-backstage() {
+  cd $DHCODE/dh-backstage
+  nvm use 20
+  yarn install
+  set -o allexport; source backstage.env; set +o allexport
+  yarn dev
+}
+
+function oam-pr() {
+  make tidy
+  make docs
+  make generate
+  make lint-fix
+  make testgen
+  cls 
+  go clean -testcache
+  make test
+}
+
+function check-spelling() {
+  codespell -L master --builtin clear,rare,usage,informal,names,en-GB_to_en-US .
+}

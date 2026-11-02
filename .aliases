@@ -10,3 +10,8 @@ alias tg='terragrunt'
 
 # find
 alias grepfind='grep --color=auto --with-filename --line-number -ri'
+
+alias cls='printf "\033c"'
+
+alias connect="$DHCODE/tf-csm-aws-access-cli/bin/aws-access-cli connect"
+alias harbor='docker run -ti --rm -v $HOME/.harbor/config.yaml:/root/.harbor/config.yaml registry.goharbor.io/harbor-cli/harbor-cli'

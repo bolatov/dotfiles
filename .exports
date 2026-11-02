@@ -1,0 +1,39 @@
+# homebrew
+export HOMEBREW_NO_ANALYTICS=1
+
+export DHCODE="$HOME/Code/github.com/deliveryhero"
+export DOCKER_HOST="unix://${HOME}/.colima/default/docker.sock"
+export TESTCONTAINERS_DOCKER_SOCKET_OVERRIDE="/var/run/docker.sock"
+
+# CSM Environment Variable
+export CSM_ENV=development
+
+export GOPRIVATE=github.com/deliveryhero
+
+export CLOUDSDK_PYTHON="$(brew --prefix python@3.11)/libexec/bin/python"
+
+
+export PATH="$PATH :$(python3 -m site --user-base)/bin"
+
+# nvm lazy-loaded: sourcing nvm.sh + `nvm use default` costs ~1.4s on every shell.
+# Defer until node/npm/npx/nvm is actually invoked.
+export NVM_DIR="$HOME/.nvm"
+_load_nvm() {
+  unset -f node npm npx nvm
+  [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+  nvm use default --silent
+  export PATH="$NVM_BIN:$PATH"  # force nvm node ahead of homebrew node in PATH
+}
+for _nvm_cmd in node npm npx nvm; do
+  eval "$_nvm_cmd() { _load_nvm; $_nvm_cmd \"\$@\"; }"
+done
+unset _nvm_cmd
+
+#export ANTHROPIC_BASE_URL="http://localhost:36253"
+#export ANTHROPIC_AUTH_TOKEN="cloudflare"
+export CLAUDE_CODE_DISABLE_EXPERIMENTAL_BETAS="1"
+export DISABLE_TELEMETRY="1"
+export DISABLE_ERROR_REPORTING="1"
+
+# Added by git-ai installer on Thu Jul  2 14:31:20 CEST 2026
+export NODE_USE_SYSTEM_CA=1\nexport PATH="/Users/a.bolatov/.git-ai/bin:$PATH"

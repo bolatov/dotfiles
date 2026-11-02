@@ -1,5 +1,5 @@
 [core]
-    excludesfile = ~/.gitignore
+	excludesfile = /Users/a.bolatov/.gitignore_global
 
     # safer `git rebase` on osx
     # http://www.git-tower.com/blog/make-git-rebase-safe-on-osx/
@@ -8,6 +8,9 @@
     # fix files, which's names contain non-ASCII symbols showing as unversioned.
     # http://michael-kuehnel.de/git/2014/11/21/git-mac-osx-and-german-umlaute.html
     precomposeunicode = false
+
+[pull]
+    rebase = true
 
 [merge]
     conflictStyle = diff3
@@ -37,3 +40,23 @@
 [user]
 	name = Almer Bolatov
 	email = almer.bolatov@deliveryhero.com
+[url "ssh://git@github.com/"]
+    insteadOf = https://github.com/
+[url "git@github.com:"]
+	insteadOf = https://github.com/
+[url "https://bolatov:ghp_MY_TOKEN@github.com/"]
+	insteadOf = https://github.com/
+[filter "lfs"]
+	process = git-lfs filter-process
+	required = true
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+[credential "https://github.com"]
+	helper = 
+	helper = !/opt/homebrew/bin/gh auth git-credential
+[credential "https://gist.github.com"]
+	helper = 
+	helper = !/opt/homebrew/bin/gh auth git-credential
+[trace2]
+	eventTarget = af_unix:stream:/Users/a.bolatov/.git-ai/internal/daemon/trace2.sock
+	eventNesting = 0

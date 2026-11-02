@@ -4,6 +4,7 @@ ZSH=~/.oh-my-zsh
 ZSH_CUSTOM=~/.zsh-custom
 ZSH_THEME=bira
 ZSH_COLORIZE_CHROMA_FORMATTER=terminal256
+ZSH_DISABLE_COMPFIX=true
 
 plugins=(
   brew git golang vi-mode kubectl kubectx
@@ -14,7 +15,6 @@ source $ZSH/oh-my-zsh.sh
 # bigger history
 HISTSIZE=10000000
 SAVEHIST=10000000
-
 
 # -- START: set show-mode-in-prompt --
 function zle-keymap-select zle-line-init
@@ -45,5 +45,8 @@ zle -N zle-keymap-select
 bindkey -M viins 'jk' vi-cmd-mode
 export KEYTIMEOUT=20
 
-# homebrew
-export HOMEBREW_NO_ANALYTICS=1
+
+RPS1='$(kubectx_prompt_info)'
+
+[[ -s "/Users/a.bolatov/.gvm/scripts/gvm" ]] && source "/Users/a.bolatov/.gvm/scripts/gvm"
+
