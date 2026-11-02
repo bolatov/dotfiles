@@ -1,0 +1,17 @@
+Installed Plugins (6):
+- playwright-skill
+- cloudflare
+- ponytail
+- mempalace
+- claude-plugins-official
+- caveman
+
+Installed Skills (8):
+- find-skills
+- gdp-csm
+- git-surgeon
+- grill-me
+- tdd
+- teach
+- to-issues
+- to-prd
